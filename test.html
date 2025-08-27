@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h3{
+            color: darkcyan;
+        }
+        output{
+            color: darkcyan;
+        }
+        body{
+            color: darkcyan;
+        }
+        #main-area{
+            margin-left: 140px;
+            background-color: cornsilk;
+            width: 2000px;
+            height: 750px;
+            color: darkcyan;
+            
+        }
+        #sidebar{
+            height: 300px;
+            border-color: rgb(0, 0, 0);
+            float: left;
+            width: 200px;
+        }
+        #main2{
+            display: flex;
+            flex-direction: row;
+            font-size: 20pt;
+        }
+        #Layout{
+            margin-left: 190px;
+           
+        }
+        table{
+            margin-top: 20px;
+            background-color: black;
+            float: left;
+            width: 250px;
+            height: 700px;
+        }
+        #back:hover{
+            cursor: pointer;
+        }
+        tr{
+            background-color: rgb(255, 255, 255);
+        }
+        td{
+            border-color: black;
+            font-size: 40pt;
+        }
+        #h1{
+            font-size: 50pt;
+        }
+        td:hover{
+            cursor: pointer;
+        }
+        #flex{
+            display: flex;
+            flex-direction: row;
+        }
+    </style>
+    <script>
+        function test(){
+           
+            if(storage == 'Darktrue'){
+                var storage = localStorage.getItem('9999');
+                localStorage.setItem('8888', 'Darktrue');
+            
+                document.getElementById('dark').checked = true;
+                document.getElementById('light').checked = false;
+                    
+
+                };
+            if(storage == 'Lighttrue'){
+                var storage = localStorage.getItem('9999');
+                localStorage.setItem('8888', 'Lighttrue');
+            
+                document.getElementById('dark').checked = false;
+                document.getElementById('light').checked = true;
+                    
+                }
+            
+            setInterval(function(){
+                
+                
+                value = document.getElementById('value').value;
+                localStorage.setItem('9999', value);
+                var storage = localStorage.getItem('8888');
+                if(storage == 'Darktrue'){
+                    
+                    var storage = localStorage.getItem('9999');
+                    var container = document.getElementById('styles');
+                    var txt = `<style>#main,body{background-color: rgb(${storage},${storage},${storage})}
+                                        #main-area{background-color: rgb(${storage},${storage},${storage});
+                                                    color: white;}</style>`;
+                    container.innerHTML = txt;
+
+                };
+                if(storage == 'Lighttrue'){
+                    
+                    var storage = localStorage.getItem('9999') * 2.5;
+                    var container = document.getElementById('styles');
+                    var txt = `<style>#main,body{background-color: rgb(${storage},${storage},${storage})}
+                                        #main-area{background-color: rgb(${storage},${storage},${storage});
+                                                    color: black;}</style>`;
+                    container.innerHTML = txt;
+                }
+
+
+            
+            
+            },1);
+            setInterval(function(){
+                var light = localStorage.getItem('9999');
+                var container= document.getElementById('value');
+                container.innerHTML = light;
+                document.getElementById('range').value = light;
+            }, 1100);
+            
+            setInterval(function(){
+                
+                
+                if(localStorage.getItem('Sprache1234')=='German'){
+                    
+                    document.getElementById('german').checked = true;
+                    document.getElementById('english').checked = false;
+
+                
+                }
+                if(localStorage.getItem('Sprache1234')== 'english'){
+                    
+                    document.getElementById('german').checked = false;
+                    document.getElementById('english').checked = true;
+
+                }
+                if(localStorage.getItem('Sprache1234')=='German'){
+                    
+                }
+            }, 1000/25)
+        }
+        
+        function light(){
+            localStorage.setItem('8888', 'Lighttrue');
+            
+            document.getElementById('dark').checked = false;
+            document.getElementById('light').checked = true;
+        }
+        function Dark(){
+            localStorage.setItem('8888', 'Darktrue');
+            
+            document.getElementById('dark').checked = true;
+            document.getElementById('light').checked = false;
+            localStorage.getItem('9999');
+            document.getElementById('styles').innerHTML = `<style>#main,body{background-color: rgb(${storage},${storage},${storage})}
+                                        #main-area{background-color: rgb(${storage},${storage},${storage});
+                                                    color: white;}</style>`
+        }
+        function redo(){
+            location.reload();
+        }
+        function german(){
+            localStorage.setItem('Sprache1234', 'German');
+        }
+        function english(){
+            localStorage.setItem('Sprache1234', 'english');
+            document.getElementById('german').checked = false;
+
+        }
+        function Layout(){
+            
+            var container = document.getElementById('main-area');
+            var text = `<div id="Layout">
+                <h3>Layout</h3>
+                <input onclick="Dark()"  type="checkbox" id="dark" >
+                <label for="dark" id="labelDark">Dark</label><br>
+                <input onclick="light()" type="checkbox" id="light" >
+                <label for="light" id="labellight">Light</label></div>`;
+            container.innerHTML = text;
+            var value = localStorage.getItem('8888');
+            if(value == 'Darktrue'){
+                
+                document.getElementById('dark').checked = true;
+                document.getElementById('light').checked = false;
+                
+                
+                
+            }
+            if(value == 'Lighttrue'){
+                
+                document.getElementById('dark').checked = false;
+                document.getElementById('light').checked = true;
+            }
+        }
+        function Lightning(){
+            
+
+
+            
+            
+           
+            var container = document.getElementById('main-area');
+            var text = `<h3>Helligkeit</h3>
+                <input type="range" value="50" min="1" max="100"  id="range" oninput="
+                    this.nextElementSibling.value = this.value
+                    ">
+<output id="value">50</output>`;
+            container.innerHTML = text;
+            var value = localStorage.getItem('9999');
+            var container2 = document.getElementById('value');
+            var container = document.getElementById('range').value = value;
+            container2.innerHTML = value;
+        }
+        function changelight(){
+            alert('test');
+        }
+        
+        function Language(){
+            var container = document.getElementById('main-area');
+            var text = `<h3> Language</h3>`;
+            container.innerHTML = text;
+        }
+    </script>
+</head>
+<body onload="test()">
+    <div id="styles"></div>
+    <div id="main">
+    <div id="main2">
+    <div id="sidebar">
+        <table>
+            <tr><td id="h1">Settings</td></tr>
+            <tr><td onclick="Layout()">Layout</td></tr>
+            <tr><td onclick="Lightning()">Helligkeit</td></tr>
+            <tr><td onclick="Language()">Sprache</td></tr>
+            
+            
+
+           <tr ><a href="index.html"></a><td id="back"  >Zurück</td></a></tr>
+            
+        </table>
+            
+            <div id="main-area">
+                
+                
+    </div></div>    
+</body>
+</html>

@@ -1,0 +1,242 @@
+
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   <style>
+       body{
+           margin: 5px;
+           background-color: wheat;
+       }
+       #code{
+           width: 835px; 
+           height: 384px;
+           resize: none;
+           background-color: whitesmoke;
+           border-color: black;
+           font-size: 15pt;
+           color:black;
+           background-image: url(img/1.png);
+           
+       }
+       #styles{
+           width: 662px;
+           height: 384px;
+           resize: none;
+           
+           border-color: black;
+           font-size: 15pt;
+           color:black;
+           background-image: url(img/2.png);
+       }
+      
+       #tryit{
+           margin-left: 2px;
+           font-size: 15pt;
+           overflow: scroll;
+           width: 1140px;
+           height: 335px;
+           
+           
+           background-image: url(img/4.png);
+       }
+       #button {
+            background-color: black;
+            color: white;
+       }
+       #area{
+           border-radius: 7px;
+           border-color: black;
+           padding-right: 1000px;
+       }
+       #javascript {
+            resize: none;
+            background-image: url(img/3.png);
+            width: 743px;
+            height: 335px;
+            font-size: 15pt;
+       }
+       #flex{
+           display: flex;
+           flex-direction: row;
+       }
+       #embeds{
+           resize: none;
+           width: 1400px;
+           height: 600px;
+           background-color: white;
+           margin-left: 300px;
+       }
+       #h1{
+           
+           margin-left: 450px;
+       }
+       #p{
+           margin-left: 550px;
+           font-size: 13pt;
+       }
+       #btn{
+           margin-left: 1000px;
+           
+           border-radius: 10px;
+           background-color: wheat;
+       }
+       table{
+           margin: 0;
+           border-color: black;
+           background-color: white;
+       }
+       tr{
+           float: left;
+       }
+       #main{
+           margin: 0;
+       }
+       td{
+           margin: 0;
+           width: 50px;
+       }
+   </style>
+   
+    <script>
+        let KEY_ALT = false;
+        let KEY_KLAMMER = false;
+        var value;
+         
+        var container;
+        function value(){
+            value = document.getElementById('code').value;
+            container = document.getElementById('tryit');
+            var code = document.getElementById('code');
+            
+            setInterval(function(){
+                var storage = localStorage.getItem('8888');
+                if(storage == 'Darktrue'){
+                    
+                    var storage = localStorage.getItem('9999');
+                    var container = document.getElementById('styles1');
+                    var txt = `<style>#main,#body{background-color: rgb(${storage},${storage},${storage})}
+                                        #main-area{background-color: rgb(${storage},${storage},${storage});
+                                                    color: white;}</style>`;
+                    container.innerHTML = txt;
+
+                };
+                if(storage == 'Lighttrue'){
+                    
+                    var storage = localStorage.getItem('9999') * 2.5;
+                    var container = document.getElementById('styles1');
+                    var txt = `<style>#main,#body{background-color: rgb(${storage},${storage},${storage})}
+                                        #main-area{background-color: rgb(${storage},${storage},${storage});
+                                                    color: black;}</style>`;
+                    container.innerHTML = txt;
+                }
+            }, 1000/25);
+        }
+        
+            
+       
+        function tryit(){
+           
+            
+            var container = document.getElementById('tryit');
+            var style = document.getElementById('styles').value;
+            var value = document.getElementById('code').value;
+            var js = document.getElementById('javascript').value;
+            var jssave = localStorage.setItem('1234567', js);
+            
+            var valuesave = localStorage.setItem('1234', value);
+            var stylesave = localStorage.setItem('12345',style);
+            var script = document.getElementById('custom');
+            var inhalt = document.getElementById('javascript').value;
+            script.innerHTML = inhalt;
+            container.innerHTML = `
+           
+            <style>${styles.value}</style>
+            
+            ${code.value}
+            
+          `;
+          
+
+
+        }
+        function restart(){
+            var code = localStorage.getItem('1234');
+            var codearea = document.getElementById('code');
+            var js = document.getElementById('javascript');
+            var jscode = localStorage.getItem('1234567');
+            js.innerHTML = jscode;
+            
+            
+            codearea.innerHTML = code;
+            var styles = localStorage.getItem('12345');
+            var style = document.getElementById('styles');
+            style.innerHTML = styles;
+
+        }
+        function save(){
+            var style = document.getElementById('styles').value;
+            var value = document.getElementById('code').value;
+            var valuesave = localStorage.setItem('1234', value);
+            var stylesave = localStorage.setItem('12345',style);
+            var text = document.getElementById('tryit').value;
+            var textsave = localStorage.setItem('123456', text);
+        } 
+        function redo(){
+            location.reload();
+        }
+        function embed(){
+            var container = document.getElementById('main');
+            var html = document.getElementById('code').value;
+            var css = document.getElementById('styles').value;
+            var js = document.getElementById('javascript').value;
+            var s = "s"
+            var java = `<${s}cript>${js}</${s}cript>`;
+            
+            var text = `
+<html>
+    <head>
+        <title>Titel</title>
+        <style>${css}</style>
+        ${java}
+    </head>
+    <body>
+       ${html}
+    </body>
+</html>`;
+            container.innerHTML = `
+            <h1 id="h1"> Quelltext direkt kopieren und einfügen</h1>
+            <p id="p">Quellcode:</p><textarea id="embeds" disabled>
+                ${text}
+                </textarea><br><br>
+                <input type="button" onclick="redo()" id="btn" value="zurück">`;
+            var embeds = document.getElementById('embeds');
+           
+        }
+       
+        
+    </script>
+</head>
+<body id="body" onload="value(),restart()">
+    <div id ="styles1"></div>
+    <div id="main"><div id="area">
+        <input type="button" value="Try it your self" onclick="tryit()" id="button">
+        <input type="button" value="Wiederherstellen" onclick="redo()" id="button">
+        <input type="button" value="Einbetten" onclick="embed()" id="button">
+        <a href="test.html"><input type="button" value="Einstellungen"  id="button"></a>
+    </div>
+    <form id="submit-form" onsubmit="tryit()">
+    <textarea id="code" ></textarea>
+    <textarea id="styles"></textarea>
+    <div id="flex">
+    <div id="tryit"></div>
+    <textarea id="javascript"></textarea></div>
+    </form>
+    <script id="custom"></script>
+    </div></div>
+    
+    
+</body>
+</html>
